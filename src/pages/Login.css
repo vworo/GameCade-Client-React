@@ -1,6 +1,4 @@
 .loginContainer {
-    height: 100%;
-    width: 100%;
     background-color: #eec6ff;
     display: flex;
     text-align: center;
@@ -13,6 +11,8 @@
     align-items: center;
     flex-grow: 1;
     justify-content: center;
+    height: 100%;
+    width: 100%;
 }
 
 /* .landingContent {

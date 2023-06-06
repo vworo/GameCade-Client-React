@@ -5,10 +5,10 @@ import './Login.css';
 export default function Login() {
     const [username, setUsername] = useState('');
 
-    let { state } = useLocation();
-
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
+        console.log(event.target.value);
+
     };
 
     return (
@@ -16,8 +16,8 @@ export default function Login() {
             <div className="landingContent">
                 <h1>GAMECADE</h1>
                 Username:
-                <input type="text" placeholder="JoelsDaGoat" value={username} onChange={handleUsernameChange} required/>
-                <Link to='/lobby' state={{ username, setUsername }}>
+                <input type="text" placeholder="JoelsDaGoat" value={username} onChange={handleUsernameChange} required />
+                <Link to="/lobby" state={{ username }}>
                     <button> PLAY </button>
                 </Link>
             </div>
