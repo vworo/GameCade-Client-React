@@ -11,7 +11,7 @@ export default function Login() {
     };
 
     return (
-        <div class="loginContainer">
+        <div className="loginContainer">
             <div className="landingContent">
                 <h1>GAMECADE</h1>
                 Username:
