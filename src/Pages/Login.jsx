@@ -1,34 +1,23 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'
+import '../Pages/Login.css';
 
 export default function Login() {
-  const [username, setUsername] = useState('');
-  const [redirectToLobby, setRedirectToLobby] = useState(false);
+    const [username, setUsername] = useState('');
+    //   const [redirectToLobby, setRedirectToLobby] = useState(false);
 
-  const handlePlayClick = () => {
-    // Save the username
-    // Here, you can perform any necessary validation or processing on the username
-    // For simplicity, we'll assume the username is valid
+    const handleUsernameChange = (event) => {
+        setUsername(event.target.value);
+    };
 
-    // Redirect to the lobby by updating the state variable
-    setRedirectToLobby(true);
-  };
-
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-  };
-
-  if (redirectToLobby) {
-    // Render the lobby component or redirect using React Router
-    // For simplicity, we'll just render a placeholder message here
-    return <div>Redirecting to Lobby...</div>;
-  }
-
-  return (
-    <div>
-      <h1>GAMECADE</h1>
-      Username:
-      <input type="text" placeholder="JoelIsDaGoat" value={username} onChange={handleUsernameChange} />
-      <button onClick={handlePlayClick}> PLAY </button>
-    </div>
-  );
+    return (
+        <div>
+            <h1>GAMECADE</h1>
+            Username:
+            <input type="text" placeholder="JoelsDaGoat" value={username} onChange={handleUsernameChange} />
+            <Link to='/lobby'>
+                <button> PLAY </button>
+            </Link>
+        </div>
+    );
 }
