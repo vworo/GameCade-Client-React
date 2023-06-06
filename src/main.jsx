@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App.jsx';
 import './index.css' //TODO: maybe replace with our own css component
-import Login from './Pages/Login.jsx'
-import Lobby from './Pages/Lobby.jsx'
+import Login from './pages/Login.jsx'
+import Lobby from './pages/Lobby.jsx'
 
 const router = createBrowserRouter([
     {
