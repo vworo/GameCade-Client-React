@@ -9,12 +9,19 @@ import Lobby from './Pages/Lobby.jsx'
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <Login />
+        element: <App />,
+        children: [
+            {
+                path: '/',
+                element: <Login />
+            },
+            {
+                path: 'lobby',
+                element: <Lobby />
+            }
+        ]
     },
-    {
-        path: 'lobby',
-        element: <Lobby />
-    }
+
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
