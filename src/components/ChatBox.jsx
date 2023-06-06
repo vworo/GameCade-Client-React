@@ -5,7 +5,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 
 import SignIn from './SignIn.jsx';
 import SignOut from './SignOut.jsx';
-import './ChatBox.css'
+import './ChatBox.css';
 
 export default function ChatBox() {
     const [user] = useAuthState(auth);
@@ -41,7 +41,7 @@ export default function ChatBox() {
         // Checks if input is not empty, trim removes any trailing whitespace
         if (input.trim()) {
             // addDoc Firebase function to add a new document to the 'messages' collection
-            await addDoc(collection(db, "messages"), {
+            await addDoc(collection(db, 'messages'), {
                 text: input,
                 timestamp: new Date(),
                 uid: user.uid,
@@ -60,19 +60,19 @@ export default function ChatBox() {
             <SignOut />
 
             {user ? (
-                <div className="chat-container">
-                {messages.map(({id, data}) => (
-                    <div key={id} className={`message ${data.uid === user.uid ? "sent" : "received"}`}>
-                        <span className='display-name'>{data.displayName}: </span>
-                        <span className='message-text'>{data.text}</span>
-                    </div>
-                ))}
+                <div className='chat-container'>
+                    {messages.map(({id, data}) => (
+                        <div key={id} className={`message ${data.uid === user.uid ? 'sent' : 'received'}`}>
+                            <span className='display-name'>{data.displayName}: </span>
+                            <span className='message-text'>{data.text}</span>
+                        </div>
+                    ))}
 
-                <form onSubmit={sendMessage}>
-                    <input value={input} onChange={handleInputChange} placeholder='Type a message' />
-                    <button type='submit'>Send</button>
-                </form>
-            </div>
+                    <form onSubmit={sendMessage}>
+                        <input value={input} onChange={handleInputChange} placeholder='Type a message' />
+                        <button type='submit'>Send</button>
+                    </form>
+                </div>
             ) : (
                 <SignIn />
             )}
