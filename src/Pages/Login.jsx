@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useOutletContext } from 'react-router-dom'
 import '../Pages/Login.css';
 
 export default function Login() {
     const [username, setUsername] = useState('');
-    //   const [redirectToLobby, setRedirectToLobby] = useState(false);
+
+    let { state } = useLocation();
 
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
@@ -15,8 +16,8 @@ export default function Login() {
             <div className="landingContent">
                 <h1>GAMECADE</h1>
                 Username:
-                <input type="text" placeholder="JoelsDaGoat" value={username} onChange={handleUsernameChange} />
-                <Link to='/lobby'>
+                <input type="text" placeholder="JoelsDaGoat" value={username} onChange={handleUsernameChange} required/>
+                <Link to='/lobby' state={{ username, setUsername }}>
                     <button> PLAY </button>
                 </Link>
             </div>
