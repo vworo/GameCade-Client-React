@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useOutletContext } from 'react-router-dom'
-import '../Pages/Login.css';
+import './Login.css';
 
 export default function Login() {
     const [username, setUsername] = useState('');
