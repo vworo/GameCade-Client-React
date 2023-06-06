@@ -11,13 +11,15 @@ export default function Login() {
     };
 
     return (
-        <div>
-            <h1>GAMECADE</h1>
-            Username:
-            <input type="text" placeholder="JoelsDaGoat" value={username} onChange={handleUsernameChange} />
-            <Link to='/lobby'>
-                <button> PLAY </button>
-            </Link>
+        <div class="loginContainer">
+            <div className="landingContent">
+                <h1>GAMECADE</h1>
+                Username:
+                <input type="text" placeholder="JoelsDaGoat" value={username} onChange={handleUsernameChange} />
+                <Link to='/lobby'>
+                    <button> PLAY </button>
+                </Link>
+            </div>
         </div>
     );
 }
