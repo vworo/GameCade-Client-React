@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { db, auth } from '../firebase.js';
 import { collection, onSnapshot, addDoc, orderBy, query } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -11,6 +11,8 @@ export default function ChatBox() {
     const [user] = useAuthState(auth);
     const [messages, setMessages] = useState([]);
     const [input, setInput] = useState('');
+    
+    const messagesEndRef = useRef();
 
     useEffect(() => {
         // Create Firestore query to retrieve the 'messages' collection and order it by the 'timestamp' field
@@ -31,6 +33,16 @@ export default function ChatBox() {
         return () => unsubscribe();
     }, []);
 
+    // Listen to messages update and trigger scrollToBottom if messages has been changed.
+    // TODO: figure out why this works on page refresh but not upon signIn
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages]);
+
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    };
+
     const handleInputChange = (e) => {
         setInput(e.target.value);
     };
@@ -50,8 +62,8 @@ export default function ChatBox() {
 
             // Clear input
             setInput('');
-        }
-    }
+        };
+    };
 
     return (
         <div>
@@ -68,6 +80,8 @@ export default function ChatBox() {
                         </div>
                     ))}
 
+                    <div ref={messagesEndRef}></div>
+
                     <form onSubmit={sendMessage}>
                         <input value={input} onChange={handleInputChange} placeholder='Type a message' />
                         <button type='submit'>Send</button>
@@ -80,4 +94,4 @@ export default function ChatBox() {
             
         </div>
     );
-}
+};
