@@ -16,15 +16,27 @@
     margin: 0 auto;
     cursor: pointer;
     text-align: center;
+    position: relative; 
   }
 
   .game-card h3 {
     font-family: 'Fredoka', sans-serif;
-    font-weight: 600;
+    margin-top: 0;
+    transition: transform 0.3s ease;
+  }
+  
+  .game-card:hover h3 {
+    transform: translateY(-15px);
   }
 
   .hide {
     display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2px;
+    box-sizing: border-box;
   }
 
   .game-card:hover > .hide {
