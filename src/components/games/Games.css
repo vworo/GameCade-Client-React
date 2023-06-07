@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
+
+.game-modes {
+    background-color: #652cb3;
+    border: 4px solid black;
+    border-radius: 2em;
+    padding: 1em;
+}
+
+.game-card {
+    background-color: #eec6ff;
+    border-radius: 8px;
+    border: 4px solid black;
+    padding: 20px;
+    width: 10em;
+    margin: 0 auto;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .game-card h3 {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .game-card:hover > .hide {
+    display: block;
+  }
+  
