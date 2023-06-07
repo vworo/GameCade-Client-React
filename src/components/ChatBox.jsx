@@ -20,7 +20,7 @@ export default function ChatBox() {
             // Redirect to the login page if the user is not authenticated
             navigate('/');
         }
-    }, [user, navigate]);
+    }, [user]);
 
     useEffect(() => {
         // Create Firestore query to retrieve the 'messages' collection and order it by the 'timestamp' field
