@@ -37,7 +37,7 @@ export default function ChatBox() {
     // TODO: figure out why this works on page refresh but not upon signIn
     useEffect(() => {
         scrollToBottom();
-    }, [messages]);
+    }, [messages, user]);
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
