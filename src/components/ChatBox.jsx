@@ -80,16 +80,18 @@ export default function ChatBox() {
 
             {user && (
                 <div className='chat-container'>
-                    {messages.map(({ id, data }) => (
-                        <div key={id} className={`message ${data.uid === user.uid ? 'sent' : 'received'}`}>
-                            <span className='display-name'>{data.displayName || data.uid}: </span>
-                            <span className='message-text'>{data.text}</span>
-                        </div>
-                    ))}
+                    <div className='messages-container'>
+                        {messages.map(({ id, data }) => (
+                            <div key={id} className={`message ${data.uid === user.uid ? 'sent' : 'received'}`}>
+                                <span className='display-name'>{data.displayName || data.uid}: </span>
+                                <span className='message-text'>{data.text}</span>
+                            </div>
+                        ))}
 
-                    <div ref={messagesEndRef}></div>
+                        <div ref={messagesEndRef}></div>
+                    </div>
 
-                    <form onSubmit={sendMessage}>
+                    <form onSubmit={sendMessage} className='messages-form'>
                         <input value={input} onChange={handleInputChange} placeholder='Type a message' />
                         <button type='submit'>Send</button>
                     </form>

@@ -8,7 +8,7 @@ export default function Login() {
             <div className="landingContent">
                 <h1>GAMECADE</h1>
                 <SignInGoogle />
-                <SignInAnon />
+                {/* <SignInAnon /> */}
             </div>
         </div>
     );
