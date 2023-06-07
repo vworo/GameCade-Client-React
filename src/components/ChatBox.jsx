@@ -2,8 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import { db, auth } from '../firebase.js';
 import { collection, onSnapshot, addDoc, orderBy, query } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
 
-import SignIn from './SignIn.jsx';
 import SignOut from './SignOut.jsx';
 import './ChatBox.css';
 
@@ -12,7 +12,15 @@ export default function ChatBox() {
     const [messages, setMessages] = useState([]);
     const [input, setInput] = useState('');
     
+    const navigate = useNavigate();
     const messagesEndRef = useRef();
+
+    useEffect(() => {
+        if (!user) {
+            // Redirect to the login page if the user is not authenticated
+            navigate('/');
+        }
+    }, [user, navigate]);
 
     useEffect(() => {
         // Create Firestore query to retrieve the 'messages' collection and order it by the 'timestamp' field
@@ -34,7 +42,6 @@ export default function ChatBox() {
     }, []);
 
     // Listen to messages update and trigger scrollToBottom if messages has been changed.
-    // TODO: figure out why this works on page refresh but not upon signIn
     useEffect(() => {
         scrollToBottom();
     }, [messages, user]);
@@ -71,11 +78,11 @@ export default function ChatBox() {
 
             <SignOut />
 
-            {user ? (
+            {user && (
                 <div className='chat-container'>
-                    {messages.map(({id, data}) => (
+                    {messages.map(({ id, data }) => (
                         <div key={id} className={`message ${data.uid === user.uid ? 'sent' : 'received'}`}>
-                            <span className='display-name'>{data.displayName}: </span>
+                            <span className='display-name'>{data.displayName || data.uid}: </span>
                             <span className='message-text'>{data.text}</span>
                         </div>
                     ))}
@@ -87,11 +94,7 @@ export default function ChatBox() {
                         <button type='submit'>Send</button>
                     </form>
                 </div>
-            ) : (
-                <SignIn />
             )}
-
-            
         </div>
     );
 };

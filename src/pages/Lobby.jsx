@@ -15,14 +15,11 @@ export default function Lobby() {
     }, [state])
     return (
         <div>
-            <nav>
-                <h2>{state.username}</h2>
-            </nav>
             <h1>GAMECADE</h1>
             <div>
-                <ChatBox />
                 <Outlet />
                 <Games />
+                <ChatBox />
             </div>
         </div>
     )
