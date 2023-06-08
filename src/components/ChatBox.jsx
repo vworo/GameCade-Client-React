@@ -11,6 +11,7 @@ export default function ChatBox() {
     const [user] = useAuthState(auth);
     const [messages, setMessages] = useState([]);
     const [input, setInput] = useState('');
+    const [expanded, setExpanded] = useState(false);
     
     const navigate = useNavigate();
     const messagesEndRef = useRef();
@@ -72,31 +73,34 @@ export default function ChatBox() {
         };
     };
 
+    // For potential future implementation of minimizing the chat
+    const toggleExpanded = () => {
+        setExpanded(!expanded);
+    }
+
     return (
         <div>
             <h2>Messenger</h2>
 
             <SignOut />
 
-            {user && (
-                <div className='chat-container'>
-                    <div className='messages-container'>
-                        {messages.map(({ id, data }) => (
-                            <div key={id} className={`message ${data.uid === user.uid ? 'sent' : 'received'}`}>
-                                <span className='display-name'>{data.displayName || data.uid}: </span>
-                                <span className='message-text'>{data.text}</span>
-                            </div>
-                        ))}
+            <div className='chat-container'>
+                <div className='messages-container'>
+                    {messages.map(({ id, data }) => (
+                        <div key={id} className={`message ${data.uid === user.uid ? 'sent' : 'received'}`}>
+                            <span className='display-name'>{data.displayName || data.uid}: </span>
+                            <span className='message-text'>{data.text}</span>
+                        </div>
+                    ))}
 
-                        <div ref={messagesEndRef}></div>
-                    </div>
-
-                    <form onSubmit={sendMessage} className='messages-form'>
-                        <input value={input} onChange={handleInputChange} placeholder='Type a message' />
-                        <button type='submit'>Send</button>
-                    </form>
+                    <div ref={messagesEndRef}></div>
                 </div>
-            )}
+
+                <form onSubmit={sendMessage} className='messages-form'>
+                    <input value={input} onChange={handleInputChange} placeholder='Type a message' />
+                    <button type='submit'>Send</button>
+                </form>
+            </div>
         </div>
     );
 };

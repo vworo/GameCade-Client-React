@@ -1,19 +1,37 @@
 .chat-container {
-    background-color: white;
-    width: 50vh;
+    background-color: #652cb3;
+    width: 60vh;
     height: 50vh;
     border: solid black;
     display: flex;
     flex-direction: column;
+    padding: 0.5em;
 }
 
 .messages-container {
     height: 100%;
     overflow: auto;
+    border: solid black;
+    padding: 0.5em;
+    background-color: white;
 }
 
 .message {
     color: black;
+    margin: 0.5em;
+    display: flex;
+    align-items: center;
+}
+
+.sent {
+    justify-content: flex-end;
+}
+
+.message-text {
+    background-color: lightgrey;
+    border: solid grey;
+    border-radius: 0.5em;
+    padding: 0.3em;
 }
 
 .display-name {
@@ -21,10 +39,14 @@
 }
 
 .messages-form {
-    border-top: solid black;
     display: flex;
+    margin: 0.5em;
 }
 
-input {
+.messages-form button {
+    background-color: #eec6ff;
+}
+
+.messages-form input {
     flex: 1;
 }
