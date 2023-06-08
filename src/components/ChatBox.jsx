@@ -4,7 +4,6 @@ import { collection, onSnapshot, addDoc, orderBy, query } from 'firebase/firesto
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 
-import SignOut from './SignOut.jsx';
 import './ChatBox.css';
 
 export default function ChatBox() {
