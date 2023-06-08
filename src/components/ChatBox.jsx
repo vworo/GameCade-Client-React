@@ -82,8 +82,6 @@ export default function ChatBox() {
         <div>
             <h2>Messenger</h2>
 
-            <SignOut />
-
             <div className='chat-container'>
                 <div className='messages-container'>
                     {messages.map(({ id, data }) => (
