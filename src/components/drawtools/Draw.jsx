@@ -1,5 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
 
+const canvasStyle = {
+    border: '4px solid black'
+}
+
 export default function Draw() {
 
     const canvasRef = useRef(null)
@@ -48,6 +52,7 @@ export default function Draw() {
             onMouseUp={ stopDrawing}
             onMouseMove={ startDrawing}
             ref={ canvasRef}
+            style={ canvasStyle }
         />
     )
 }
