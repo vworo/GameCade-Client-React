@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { collection, doc, getDoc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { auth, db } from '../firebase.js';
 
-import ChatBox from '../components/ChatBox.jsx';
-import Games from '../components/games/Games';
 import '../pages/Lobby.css';
 
 export default function Lobby() {
@@ -27,12 +25,12 @@ export default function Lobby() {
                 const lobbyRef = doc(db, 'lobbies', lobbyCode);
                 await setDoc(lobbyRef, {
                     hostId: userId,
-                    players: [{ name: displayName, id: userId }],
+                    players: [{ name: displayName, id: userId, drawingStatus: 'IN_PROGRESS' }],
                     timestamp: new Date()
                 });
 
                 // Redirect to the lobby page with the generated lobby code
-                navigate(`/lobby/${lobbyCode}`);
+                navigate(`/lobby/${lobbyCode}`, { state: { displayName, userId } });
             } catch (error) {
                 console.error('Error creating lobby', error);
             }
@@ -59,7 +57,7 @@ export default function Lobby() {
                     });
 
                     // Redirect to the lobby page with the join code
-                    navigate(`/lobby/${joinCode}`);
+                    navigate(`/lobby/${joinCode}`, { state: { displayName: '123', userId: 32 } });
                 } else {
                     // If lobby does not exist
                     console.log('Invalid lobby code');
@@ -96,9 +94,6 @@ export default function Lobby() {
                     <button type="submit">Join Lobby</button>
                     {errorMessage && <p>{errorMessage}</p>}
                 </form>
-
-                <Games />
-                <ChatBox />
             </div>
         </div>
     );
