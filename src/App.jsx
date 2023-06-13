@@ -6,6 +6,7 @@ import Game from './pages/Game';
 import SignOut from './components/SignOut';
 import Canvas from './pages/Canvas';
 import Author from './Pages/Author';
+import './App.css'
 
 function App() {
     return (
