@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import Paintbar from './Paintbar';
+import '../drawtools/Draw.css'
 
 export default function Draw() {
     const canvasRef = useRef(null);

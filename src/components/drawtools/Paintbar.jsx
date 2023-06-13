@@ -1,4 +1,5 @@
 import React from "react";
+import '../drawtools/Paintbar.css'
 
 export default function Paintbar({ setLineColor }) {
   const handleColorChange = (e) => {
