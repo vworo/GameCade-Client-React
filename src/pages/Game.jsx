@@ -1,13 +1,18 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase.js';
 
 import ChatBox from '../components/ChatBox.jsx';
+import Games from '../components/games/Games.jsx';
 
 export default function Game() {
   const { lobbyCode } = useParams();
   const [players, setPlayers] = useState([]);
+
+  const {state} = useLocation();
+  const { userId, displayName } = state;
+  console.log({ userId, displayName })
 
   useEffect(() => {
     // Create reference for the specified lobby in the 'lobbies' collection
@@ -26,16 +31,22 @@ export default function Game() {
     return () => unsubscribe();
   }, []);
 
-  return (
-    <div>
-        <h1>Game Page coming soon</h1>
-        <h2>Players:</h2>
-        <ul>
-            {players.map((player, index) => (
-                <li key={index}>{player}</li>
-            ))}
-        </ul>
+  if (userId && displayName) {
+    return (
+      <div>
+          <h1>Games</h1>
+          <h2>Players:</h2>
+          <ul>
+              {players.map((player, index) => (
+                  <li key={index}>{player}</li>
+              ))}
+          </ul>
         <ChatBox />
-    </div>
-  );
+        
+        <Games lobbyCode={lobbyCode} userId={userId} displayName={displayName} />
+      </div>
+    );
+  } else {
+    <div>Not logged in</div>
+  }
 }
