@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
+
 .loginContainer {
     background-color: #eec6ff;
     display: flex;
     text-align: center;
     border: 5px solid black;
     height: 100vh;
+    border-radius: 1em;
 }
 
 .landingContent {
@@ -16,7 +19,7 @@
     width: 100%;
 }
 
-/* .landingContent {
-    margin: 0 auto;
-    text-align: center;
-} */
+h1 {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+}
