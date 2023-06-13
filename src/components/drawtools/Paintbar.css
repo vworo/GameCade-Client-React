@@ -1,0 +1,11 @@
+.paintbar {
+    width: 650px;
+    height: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    border-radius: 5px;
+    align-items: center;
+    background-color: #55ff002d;
+    margin: auto;
+    margin-top: 10px;
+  }
