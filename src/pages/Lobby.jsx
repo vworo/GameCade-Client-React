@@ -54,7 +54,7 @@ export default function Lobby() {
                 if (lobbySnapshot.exists()) {
                     // If lobby exists, add the user to the lobby's players array
                     await updateDoc(lobbyRef, {
-                        players: arrayUnion({ name: displayName, id: userId })
+                        players: arrayUnion({ name: displayName, id: userId, drawingStatus: "IN_PROGRESS" })
                     });
 
                     // Redirect to the lobby page with the join code, passing data to next route
