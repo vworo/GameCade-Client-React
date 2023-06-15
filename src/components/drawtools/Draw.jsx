@@ -143,6 +143,7 @@ export default function Draw(props) {
     if (showResultsPage) {
         return (
             <div>
+                <h1>Results:</h1>
                 {canvasImages.map((imageUrl, index) => (
                     <img key={index} src={imageUrl} alt={`Canvas from ${ props.userId }`} />
                 ))}

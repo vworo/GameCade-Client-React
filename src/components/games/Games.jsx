@@ -12,6 +12,7 @@ export default function Games(props) {
 
         return (
             <div>
+                <h1>Game Modes:</h1>
                 <div className="game-modes">
                     <div className="game-card" onClick={() => setCurrentGame('WRITE_AND_DRAW')}>
                         <h3>WRITE AND DRAW</h3>

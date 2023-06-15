@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
 
 .container {
-    display: inline-block;
+    display: flex;
 }
 
 .container h2 {
@@ -20,6 +20,7 @@
     padding-right: 1em;
     min-height: 400px;
     max-height: 400px;
+    margin-right: 1em;
 }
 .players ul {
     font-size: larger;
