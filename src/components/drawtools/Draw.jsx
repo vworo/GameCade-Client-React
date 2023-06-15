@@ -109,6 +109,7 @@ export default function Draw(props) {
         
             const imageRef = ref(storageRef, `${props.userId}-${props.lobbyCode}.png`);
             await uploadBytes(imageRef, canvasBlob, { contentType: 'image/png' });
+            console.log('Image saved');
         } catch (error) {
             console.error('Error saving canvas image:', error);
         }
@@ -120,6 +121,7 @@ export default function Draw(props) {
             const lobbySnapshot = await getDoc(lobbyRef);
 
             if (lobbySnapshot.exists()) {
+                await saveCanvasImage();
                 const oldPlayers = lobbySnapshot.data().players;
 
                 const newPlayers = oldPlayers.map((player) => {
@@ -129,12 +131,9 @@ export default function Draw(props) {
                     return player;
                 });
 
-                await Promise.all([
-                    updateDoc(lobbyRef, {
-                        players: newPlayers,
-                    }),
-                    saveCanvasImage(),
-                ]);
+                await updateDoc(lobbyRef, {
+                    players: newPlayers,
+                })
             }
         } catch (err) {
             console.error('Error handling drawing complete', err);
