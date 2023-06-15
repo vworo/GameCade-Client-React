@@ -1,7 +1,8 @@
 import { useRef, useEffect, useState } from 'react';
 
 import { doc, onSnapshot, getDoc, setDoc, updateDoc } from 'firebase/firestore';
-import { db } from '../../firebase.js';
+import { db, storage } from '../../firebase.js';
+import { ref, uploadString, getDownloadURL, listAll, uploadBytes } from 'firebase/storage';
 
 import Paintbar from './Paintbar';
 import '../drawtools/Draw.css'
@@ -10,6 +11,7 @@ export default function Draw(props) {
     const canvasRef = useRef(null);
     const ctxRef = useRef(null);
 
+    const storageRef = ref(storage, `${ props.lobbyCode }`);
 
     // * Drawing Code --
     const [isDrawing, setIsDrawing] = useState(false);
@@ -18,6 +20,7 @@ export default function Draw(props) {
     const [lineOpacity, setLineOpacity] = useState(0.1);
 
     const [showResultsPage, setShowResultsPage] = useState(false);
+    const [canvasImages, setCanvasImages] = useState([]);
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -81,6 +84,35 @@ export default function Draw(props) {
     }, []);
     // * Code to get user status
 
+    const fetchCanvasImages = async () => {
+        try {
+            const imagesRef = ref(storageRef);
+            const imagesList = await listAll(imagesRef);
+            const imageUrls = await Promise.all(
+                imagesList.items.map(async (item) => {
+                    const imageUrl = await getDownloadURL(item);
+                    return imageUrl;
+                })
+            );
+            setCanvasImages(imageUrls);
+        } catch (error) {
+            console.error('Error fetching canvas images:', error);
+        }
+    };
+
+    const saveCanvasImage = async () => {
+        try {
+            const canvasDataUrl = canvasRef.current.toDataURL('image/png');
+            const canvasBlob = await (await fetch(canvasDataUrl)).blob();
+        
+            const imageRef = ref(storageRef, `${props.userId}-${props.lobbyCode}.png`);
+            await uploadBytes(imageRef, canvasBlob, { contentType: 'image/png' });
+        
+            await fetchCanvasImages();
+        } catch (error) {
+            console.error('Error saving canvas image:', error);
+        }
+    };
 
     const handleDrawingComplete = async () => {
         try {
@@ -88,30 +120,35 @@ export default function Draw(props) {
             const lobbySnapshot = await getDoc(lobbyRef);
 
             if (lobbySnapshot.exists()) {
-
                 const oldPlayers = lobbySnapshot.data().players;
-                console.log("old players", oldPlayers)
 
                 const newPlayers = oldPlayers.map((player) => {
                     if (player.id === props.userId) {
-                        player.drawingStatus = 'COMPLETE'
+                        player.drawingStatus = 'COMPLETE';
                     }
                     return player;
                 });
 
-                console.log("new players", newPlayers)
-
-                await updateDoc(lobbyRef, {
-                    players: newPlayers
-                });
+                await Promise.all([
+                    updateDoc(lobbyRef, {
+                        players: newPlayers,
+                    }),
+                    saveCanvasImage(),
+                ]);
             }
         } catch (err) {
             console.error('Error handling drawing complete', err);
         }
-    }
+    };
 
     if (showResultsPage) {
-        return (<div>This is the results page you are DONE</div>)
+        return (
+            <div>
+                {canvasImages.map((imageUrl, index) => (
+                    <img key={index} src={imageUrl} alt={`Canvas from ${ props.userId }`} />
+                ))}
+            </div>
+        )
     } else {
         return (
             <div className="draw">
