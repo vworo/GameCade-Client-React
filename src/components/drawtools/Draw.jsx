@@ -109,6 +109,7 @@ export default function Draw(props) {
         
             const imageRef = ref(storageRef, `${props.userId}-${props.lobbyCode}.png`);
             await uploadBytes(imageRef, canvasBlob, { contentType: 'image/png' });
+            await fetchCanvasImages();
         } catch (error) {
             console.error('Error saving canvas image:', error);
         }
