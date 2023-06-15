@@ -4,6 +4,7 @@
     background-color: #652cb3;
     width: 60vw;
     min-width: 420px;
+    max-width: 420px;
     height: 50vh;
     border: 4px solid black;
     display: none;
