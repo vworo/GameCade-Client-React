@@ -38,15 +38,15 @@ export default function Game() {
                 <h1>GAMCADE</h1>
                 <div className="container">
                     <div className="left">
-                    <h2>Lobby: {lobbyCode}</h2>
-                    <div className="players">
-                        <h2>Players</h2>
-                        <ul>
-                            {players.map((player, index) => (
-                                <li key={index}>{player}</li>
-                            ))}
-                        </ul>
-                    </div>
+                        <h2>Lobby: {lobbyCode}</h2>
+                        <div className="players">
+                            <h2>Players</h2>
+                            <ul>
+                                {players.map((player, index) => (
+                                    <li key={index}>{player}</li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
                     <Games lobbyCode={lobbyCode} displayName={displayName} userId={userId} />
                 </div>
