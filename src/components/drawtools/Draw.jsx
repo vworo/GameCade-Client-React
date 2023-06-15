@@ -151,20 +151,23 @@ export default function Draw(props) {
         )
     } else {
         return (
-            <div className="draw">
+            <div>
                 <Paintbar 
-                    setLineColor={setLineColor}
-                />
-                <canvas 
-                    onMouseDown={startDrawing}
-                    onMouseUp={endDrawing}
-                    onMouseMove={draw}
-                    ref={canvasRef}
-                    width={`1280px`}
-                    height={`720`}
-                />
-                <button onClick={handleDrawingComplete}>Done</button>
+                        setLineColor={setLineColor}
+                    />
+                <button className='button-done' onClick={handleDrawingComplete}>End Turn</button>
+                <div className="draw">
+                    <canvas 
+                        onMouseDown={startDrawing}
+                        onMouseUp={endDrawing}
+                        onMouseMove={draw}
+                        ref={canvasRef}
+                        width={`1280px`}
+                        height={`720px`}
+                    />
+                </div>
             </div>
+            
         )
     }
 }

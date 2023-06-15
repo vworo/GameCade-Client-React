@@ -1,11 +1,13 @@
 .paintbar {
-    width: 650px;
+    width: 200px;
     height: 50px;
     display: flex;
     justify-content: space-evenly;
+    border: 4px solid black;
     border-radius: 5px;
     align-items: center;
     background-color: #55ff002d;
     margin: auto;
     margin-top: 10px;
+    font-family: 'Fredoka', sans-serif;
   }
