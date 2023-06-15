@@ -8,9 +8,11 @@ The site is live now at [gamecade-react.web.app](gamecade-react.web.app)! Users 
 
 ## Features
 
-- Drawing to heart's content with the canvas
-- Global chat system for sharing and discovering other lobbies.
-- Display of resulting canvas images once all user's have finished their turn.
+- Creating and joining lobbies
+- Game mode selection
+- Canvas drawing
+- Global chat system
+- Results page to view the drawings of other users
 
 ## Planned Features and Fixes
 
