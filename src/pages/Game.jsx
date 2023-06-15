@@ -5,6 +5,7 @@ import { db } from '../firebase.js';
 
 import ChatBox from '../components/ChatBox.jsx';
 import Games from '../components/games/Games.jsx';
+import '../pages/Game.css'
 
 export default function Game() {
     const { lobbyCode } = useParams();
@@ -34,18 +35,24 @@ export default function Game() {
     if (userId && displayName) {
         return (
             <div>
-                <h1>Game Lobby: {lobbyCode}</h1>
-                <h2>Players:</h2>
-                <ul>
-                    {players.map((player, index) => (
-                        <li key={index}>{player}</li>
-                    ))}
-                </ul>
-        
-                <Games lobbyCode={lobbyCode} displayName={displayName} userId={userId} />
+                <h1>GAMCADE</h1>
+                <div className="container">
+                    <div className="left">
+                    <h2>Lobby: {lobbyCode}</h2>
+                    <div className="players">
+                        <h2>Players</h2>
+                        <ul>
+                            {players.map((player, index) => (
+                                <li key={index}>{player}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    </div>
+                    <Games lobbyCode={lobbyCode} displayName={displayName} userId={userId} />
+                </div>
                 <ChatBox />
             </div>
-          );
+        );
     } else {
         <div>Not logged in.</div>
     };
