@@ -31,7 +31,7 @@ export default function Lobby() {
                 });
 
                 // Redirect to the lobby page with the generated lobby code, passing data to next route
-                navigate(`/lobby/${lobbyCode}`, { state: { displayName, userId }});
+                navigate(`/lobby/${lobbyCode}`, { state: { displayName, userId } });
             } catch (error) {
                 console.error('Error creating lobby', error);
             }
@@ -40,7 +40,7 @@ export default function Lobby() {
 
     const _handleJoinLobby = async (e) => {
         e.preventDefault();
-        
+
         const currentUser = auth.currentUser;
         if (currentUser) {
             const userId = currentUser.uid;
@@ -58,7 +58,7 @@ export default function Lobby() {
                     });
 
                     // Redirect to the lobby page with the join code, passing data to next route
-                    navigate(`/lobby/${joinCode}`, { state: { displayName, userId }});
+                    navigate(`/lobby/${joinCode}`, { state: { displayName, userId } });
                 } else {
                     // If lobby does not exist
                     console.log('Invalid lobby code');
@@ -75,29 +75,30 @@ export default function Lobby() {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         const codeLength = 6; // 6 is good because idk
         let lobbyCode = '';
-    
+
         for (let i = 0; i < codeLength; i++) {
             const randomIndex = Math.floor(Math.random() * characters.length);
             lobbyCode += characters.charAt(randomIndex);
         }
-    
+
         return lobbyCode;
     };
 
     return (
         <div>
-            <h1>GAMECADE LOBBY</h1>
-            <div>
-                <button onClick={_handleCreateLobby}>Create Lobby</button>
-                
+            <div className='lobby-content'>
+                <h1>GAMECADE LOBBY</h1>
+                <div className='create-lobby-button'>
+                    <button onClick={_handleCreateLobby}>CREATE LOBBY</button>
+                </div>
+                <h2>OR</h2>
                 <form onSubmit={_handleJoinLobby}>
                     <input onChange={e => setJoinCode(e.target.value)} />
                     <button type="submit">Join Lobby</button>
                     {errorMessage && <p>{errorMessage}</p>}
                 </form>
-
-                <ChatBox />
             </div>
+            <ChatBox />
         </div>
     );
 };

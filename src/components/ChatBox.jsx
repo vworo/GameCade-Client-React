@@ -45,7 +45,7 @@ export default function ChatBox() {
   // Listen to messages update and trigger scrollToBottom if messages have been changed.
   useEffect(() => {
     scrollToBottom();
-  }, [messages, user]);
+  }, [messages, user, setExpanded]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
