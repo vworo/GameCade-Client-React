@@ -35,7 +35,7 @@ export default function Game() {
     if (userId && displayName) {
         return (
             <div>
-                <h1>GAMCADE</h1>
+                <h1>GAMECADE</h1>
                 <div className="container">
                     <div className="left">
                         <h2>Lobby: {lobbyCode}</h2>
