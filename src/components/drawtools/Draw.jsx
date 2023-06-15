@@ -74,6 +74,7 @@ export default function Draw(props) {
                 const playersCompleted = lobbyData.players.filter((player) => player.drawingStatus === 'COMPLETE');
                 
                 if (playersCompleted.length === totalNumberOfPlayers) {
+                    fetchCanvasImages();
                     setShowResultsPage(true);
                 }
             });
@@ -95,6 +96,7 @@ export default function Draw(props) {
                 })
             );
             setCanvasImages(imageUrls);
+            console.log('Images fetched');
         } catch (error) {
             console.error('Error fetching canvas images:', error);
         }
