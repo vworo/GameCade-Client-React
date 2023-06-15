@@ -94,7 +94,9 @@ export default function Lobby() {
                 <h2>OR</h2>
                 <form onSubmit={_handleJoinLobby}>
                     <input onChange={e => setJoinCode(e.target.value)} />
-                    <button type="submit">Join Lobby</button>
+                    <div className="button-container">
+                        <button type="submit">JOIN LOBBY</button>
+                    </div>
                     {errorMessage && <p>{errorMessage}</p>}
                 </form>
             </div>
