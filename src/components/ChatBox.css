@@ -5,18 +5,21 @@
     width: 60vw;
     min-width: 420px;
     height: 50vh;
-    border: solid black;
-    display: none; /* Initially hidden */
+    border: 4px solid black;
+    display: none;
     flex-direction: column;
     padding: 0.5em;
+    margin-bottom: 0;
+    border-radius: 8px;
 }
 
 .messages-container {
     height: 100%;
     overflow: auto;
-    border: solid black;
+    border: 3px solid black;
     padding: 0.5em;
-    background-color: white;
+    background-color: hsla(282, 100%, 89%, 0.671);
+    border-radius: 8px;
 }
 
 .message {
@@ -31,14 +34,17 @@
 }
 
 .message-text {
-    background-color: lightgrey;
+    background-color: rgb(255, 255, 255);
     border: solid grey;
     border-radius: 0.5em;
     padding: 0.3em;
+    font-family: 'Fredoka', sans-serif;
 }
 
 .display-name {
-    color: blue;
+    color: rgb(27, 17, 27);
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500;
 }
 
 .messages-form {
@@ -48,16 +54,43 @@
 
 .messages-form button {
     background-color: #eec6ff;
+    margin-right: -8px;
+    border-radius: 5px;
+    border: 2px solid black;
+    cursor: pointer;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+}
+
+.messages-form button:hover {
+    background-color: #ad95f5;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+}
+
+.chat-button span:active {
+    background-color: #6a3daa;
+    border: 4px solid rgba(0, 0, 0, 0.8);
+    color: #ccc;
 }
 
 .messages-form input {
     flex: 1;
+    border-radius: 5px;
+    margin-right: 0.5em;
+    margin-left: -8px;
+    border: 2px solid black;
+    background-color: #d6c1f5;
+    font-family: 'Fredoka', sans-serif;
+    font-size:medium
 }
 
 .chat-button {
     position: fixed;
     bottom: 20px;
     left: 20px;
+    margin-top: 0;
   }
 
 .chat-button span {
@@ -72,4 +105,16 @@
     background-color: #5502c9;
     color: white;
     cursor: pointer;
+}
+
+
+.chat-button span:hover {
+    background-color: #693fe7;
+    border: 4px solid rgba(0, 0, 0, 0.3);
+}
+
+.chat-button span:active {
+    background-color: #6a3daa;
+    border: 4px solid rgba(0, 0, 0, 0.8);
+    color: #ccc;
 }
