@@ -4,7 +4,7 @@ This is a drawing game app built with React and Firebase. It allows multiple use
 
 ## Getting started
 
-The site is live now at [gamecade-react.web.app](gamecade-react.web.app)! Users must authenticate through Google (for now).
+The site is live now at [gamecade-react.web.app](http://gamecade-react.web.app)! Users must authenticate through Google (for now).
 
 ## Features
 
