@@ -1,13 +1,15 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { collection, doc, getDoc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
-import { auth, db } from '../firebase.js';
+'use client'
 
-import ChatBox from '../components/ChatBox.jsx';
-import '../pages/Lobby.css';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { doc, getDoc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { auth, db } from '../../firebase.js';
+
+import ChatBox from '../../components/ChatBox.jsx';
+import './Lobby.css';
 
 export default function Lobby() {
-    const navigate = useNavigate();
+    const router = useRouter();
     const [joinCode, setJoinCode] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
@@ -31,7 +33,7 @@ export default function Lobby() {
                 });
 
                 // Redirect to the lobby page with the generated lobby code, passing data to next route
-                navigate(`/lobby/${lobbyCode}`, { state: { displayName, userId } });
+                router.push(`/lobby/${lobbyCode}`, { state: { displayName, userId } });
             } catch (error) {
                 console.error('Error creating lobby', error);
             }
@@ -58,7 +60,7 @@ export default function Lobby() {
                     });
 
                     // Redirect to the lobby page with the join code, passing data to next route
-                    navigate(`/lobby/${joinCode}`, { state: { displayName, userId } });
+                    router.push(`/lobby/${joinCode}`, { state: { displayName, userId } });
                 } else {
                     // If lobby does not exist
                     console.log('Invalid lobby code');

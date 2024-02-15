@@ -1,16 +1,6 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter } from "next/font/google"; 
 import "./globals.css";
-
-
-import { Route, Routes } from 'react-router-dom';
-
-const Login = require('./pages/Login');
-const Lobby = require('./pages/Lobby');
-const Game = require('./pages/Game');
-const SignOut = require('./components/SignOut');
-const RedirectToLobby = require('./components/RedirectToLobby');
-
 import './Layout.css'
 
 
@@ -29,13 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SignOut />
-        <RedirectToLobby />
-        <Routes>
-            <Route path='/' element={<Login />} />
-            <Route path='/lobby' element={<Lobby />} />
-            <Route path='/lobby/:lobbyCode' element={<Game />} />
-        </Routes>
+        { children }
       </body>
     </html>
   );

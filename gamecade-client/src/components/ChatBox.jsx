@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { db, auth } from '../firebase.js';
 import { collection, onSnapshot, addDoc, orderBy, query } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 import './ChatBox.css';
 
@@ -12,14 +12,14 @@ export default function ChatBox() {
   const [input, setInput] = useState('');
   const [expanded, setExpanded] = useState(false);
 
-  const navigate = useNavigate();
+  const router = useRouter();
   const messagesEndRef = useRef();
   const chatContainerRef = useRef(null);
 
   useEffect(() => {
     if (!user) {
       // Redirect to the login page if the user is not authenticated
-      navigate('/');
+      router.push('/');
     }
   }, [user]);
 
