@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`min-h-svh flex flex-col ${inter.className}`}>
         <SignOut />
         <RedirectToLobby />
         { children }
