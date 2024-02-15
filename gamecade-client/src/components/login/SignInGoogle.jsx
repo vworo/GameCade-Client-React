@@ -17,8 +17,9 @@ export default function SignInGoogle() {
     };
 
     return (
-        <div className="googleSignIn">
-            <button onClick={_signInWithGoogle}>SIGN IN WITH GOOGLE</button>
-        </div>
+        <button 
+            className="py-2 px-4" 
+            onClick={ _signInWithGoogle }
+        >SIGN IN WITH GOOGLE</button>
     );
 };
