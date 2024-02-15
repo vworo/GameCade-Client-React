@@ -1,11 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
-
 .container {
     display: flex;
 }
 
 .container h2 {
-    font-family: 'Fredoka', sans-serif;
     font-weight: 600;
     color: white;
 }
@@ -37,7 +34,6 @@
     border: 3px solid black;
     background-color: #eec6ff;
     border-radius: 8px;
-    font-family: 'Fredoka', sans-serif;
     font-weight: 600;
     margin-bottom: 4px;
 }
