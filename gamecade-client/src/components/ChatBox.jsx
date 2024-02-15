@@ -16,12 +16,14 @@ export default function ChatBox() {
   const messagesEndRef = useRef();
   const chatContainerRef = useRef(null);
 
-  useEffect(() => {
-    if (!user) {
-      // Redirect to the login page if the user is not authenticated
-      router.push('/');
-    }
-  }, [user]);
+
+  // * This shouldn't be here
+  // useEffect(() => {
+  //   if (!user) {
+  //     // Redirect to the login page if the user is not authenticated
+  //     router.push('/');
+  //   }
+  // }, [user]);
 
   useEffect(() => {
     // Create Firestore query to retrieve the 'messages' collection and order it by the 'timestamp' field
