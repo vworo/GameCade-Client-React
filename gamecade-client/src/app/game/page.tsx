@@ -1,25 +1,28 @@
+'use client'
+
 import { useEffect, useState } from 'react';
 
-import { withRouter } from 'next/router'
+import { useParams, useRouter } from 'next/navigation'
 
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../../firebase.js';
 
 import ChatBox from '../../components/ChatBox.jsx';
 import Games from '../../components/games/Games.jsx';
-import '../pages/Game.css'
+import './Game.css'
 
 function Game() {
+    const { lobbyCode } = useParams();
     const [players, setPlayers] = useState([]);
 
-    const { state } = useLocation();
-    const { displayName, userId } = state;
+    const router = useRouter();
+    const { displayName, userId } = router?.query || {};
     console.log({ displayName, userId });
 
-    useEffect(() => {
-        // Create reference for the specified lobby in the 'lobbies' collection
-        const lobbyRef = doc(db, 'lobbies', this.lobbyCode);
+    // Create reference for the specified lobby in the 'lobbies' collection
+    const lobbyRef = doc(db, 'lobbies', lobbyCode);
 
+    useEffect(() => {
         // Setup a listener for changes in the document - https://firebase.google.com/docs/firestore/query-data/listen
         const unsubscribe = onSnapshot(lobbyRef, (snapshot) => {
             const lobbyData = snapshot.data();
@@ -59,4 +62,4 @@ function Game() {
     };
 };
 
-export default withRouter(Game)
+export default Game
