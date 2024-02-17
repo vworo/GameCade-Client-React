@@ -1,65 +1,49 @@
 'use client'
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import mockGamePhoto from "@/assets/MOCK_GAME_1_HERO_IMAGE.jpg";
 
-import { useParams, useRouter } from 'next/navigation'
-
-import { doc, onSnapshot } from 'firebase/firestore';
-import { db } from '../../firebase.js';
-
-import ChatBox from '../../components/ChatBox.jsx';
-import Games from '../../components/games/Games.jsx';
 import './Game.css'
 
 function Game() {
-    const { lobbyCode } = useParams();
-    const [players, setPlayers] = useState([]);
-
-    const router = useRouter();
-    const { displayName, userId } = router?.query || {};
-    console.log({ displayName, userId });
-
-    // Create reference for the specified lobby in the 'lobbies' collection
-    const lobbyRef = doc(db, 'lobbies', lobbyCode);
-
-    useEffect(() => {
-        // Setup a listener for changes in the document - https://firebase.google.com/docs/firestore/query-data/listen
-        const unsubscribe = onSnapshot(lobbyRef, (snapshot) => {
-            const lobbyData = snapshot.data();
-
-            // Use map to extract player names  from the 'players' array, storing them in a new array to parsed into the 'players' useState
-            const updatedPlayers = lobbyData.players.map(player => player.name);
-            setPlayers(updatedPlayers);
-        });
-
-        // Clean up the listener when the component is unmounted
-        return () => unsubscribe();
-    }, []);
-
-    if (userId && displayName) {
-        return (
-            <div>
-                <h1>GAMECADE</h1>
-                <div className="container">
-                    <div className="left">
-                        <h2>Lobby: {lobbyCode}</h2>
-                        <div className="players">
-                            <h2>Players</h2>
-                            <ul>
-                                {players.map((player, index) => (
-                                    <li key={index}>{player}</li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
-                    <Games lobbyCode={lobbyCode} displayName={displayName} userId={userId} />
-                </div>
-                <ChatBox />
+    return (
+        <div className='GamePage flex flex-1 flex-col md:flex-row'>
+            <div className="GamePageHeroImageContainer h-96 md:h-svh relative
+                w-full
+                md:w-2/5
+            ">
+                <Image 
+                    src={mockGamePhoto}
+                    fill={true}
+                    alt="Picture of the author"
+                />
             </div>
-        );
-    } else {
-        <div>Not logged in.</div>
-    };
+
+            <div className="GamePageDescriptionContainer border border-red pb-8 px-10
+                w-full
+                pt-10
+                md:pt-8
+                md:w-3/5
+            ">
+                <h1 className="GameTitle text-6xl font-bold mb-2">Retro Recess RPG</h1>
+                <h4 className="GameTags text-sm mb-8">RPG - Multiplayer - Simulation</h4>
+                <p className="GameDescription text-md mb-8">
+                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                    <br/>
+                    <br/>
+                    Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. 
+                    <br/>
+                    <br/>
+                    Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+                </p>
+
+                <div className="GamePageGameActions">
+                    <button className="primary">Play Game</button>
+                </div>
+            </div>
+        </div>
+    )
 };
 
 export default Game
