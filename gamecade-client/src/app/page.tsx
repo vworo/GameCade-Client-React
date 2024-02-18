@@ -1,6 +1,7 @@
 'use client'
 
 import SignInGoogle from '../components/login/SignInGoogle';
+import SignInGuest from '../components/login/SignInGuest';
 
 export default function Login() {
     return (
@@ -12,8 +13,11 @@ export default function Login() {
             <p className="mb-8">
                 Join a vibrant community, customize your experience, and level up your gaming journey. <br />
                 Ready to play, earn, and thrive? Join Gamecade now!</p>
-            <SignInGoogle />
-            {/* <SignInAnon /> */}
+
+            <div className="flex flex-row">
+                <SignInGoogle />
+                <SignInGuest />
+            </div>
         </div>
     );
 }

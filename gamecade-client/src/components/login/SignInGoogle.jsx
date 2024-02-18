@@ -18,7 +18,7 @@ export default function SignInGoogle() {
 
     return (
         <button 
-            className="primary"
+            className="primary mx-1"
             onClick={ _signInWithGoogle }
         >SIGN IN WITH GOOGLE</button>
     );
