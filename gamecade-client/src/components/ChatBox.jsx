@@ -84,7 +84,7 @@ export default function ChatBox() {
   }, [expanded]);
 
   return (
-    <div className={`chat ${expanded ? 'expanded' : ''}`}>
+    <>
       <button className="chat-button primary" onClick={toggleExpanded}>
         { expanded ? 
           <>
@@ -96,23 +96,25 @@ export default function ChatBox() {
         }
       </button>
 
-      <div className='chat-container' ref={chatContainerRef}>
-        <div className='messages-container'>
-          {messages.map(({ id, data }) => (
-            <div key={id} className={`message ${data.uid === user.uid ? 'sent' : 'received'}`}>
-              <span className='display-name'>{data.displayName || data.uid}: </span>
-              <span className='message-text'>{data.text}</span>
-            </div>
-          ))}
-
-                    <div ref={messagesEndRef}></div>
+        { expanded && 
+          <div className='chat-container' ref={chatContainerRef}>
+            <div className='messages-container'>
+              {messages.map(({ id, data }) => (
+                <div key={id} className={`message ${data.uid === user.uid ? 'sent' : 'received'}`}>
+                  <span className='display-name'>{data.displayName || data.uid}: </span>
+                  <span className='message-text'>{data.text}</span>
                 </div>
+              ))}
 
-                <form onSubmit={sendMessage} className='messages-form'>
-                    <input value={input} onChange={handleInputChange} placeholder='Type a message' />
-                    <button type='submit'>SEND</button>
-                </form>
-            </div>
-        </div>
+              <div ref={messagesEndRef}></div>
+              </div>
+
+              <form onSubmit={sendMessage} className='messages-form'>
+                  <input value={input} onChange={handleInputChange} placeholder='Type a message' />
+                  <button type='submit'>SEND</button>
+              </form>
+          </div>
+        }
+    </>
     );
 }
