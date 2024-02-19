@@ -1,10 +1,14 @@
+'use client'
+
 import { useState, useEffect, useRef } from 'react';
 import { db, auth } from '../firebase.js';
 import { collection, onSnapshot, addDoc, orderBy, query } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useRouter } from 'next/navigation';
 
-import './ChatBox.css';
+import { faClose, faComments } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import './ChatBox.scss';
 
 export default function ChatBox() {
   const [user] = useAuthState(auth);
@@ -12,18 +16,8 @@ export default function ChatBox() {
   const [input, setInput] = useState('');
   const [expanded, setExpanded] = useState(false);
 
-  const router = useRouter();
   const messagesEndRef = useRef();
   const chatContainerRef = useRef(null);
-
-
-  // * This shouldn't be here
-  // useEffect(() => {
-  //   if (!user) {
-  //     // Redirect to the login page if the user is not authenticated
-  //     router.push('/');
-  //   }
-  // }, [user]);
 
   useEffect(() => {
     // Create Firestore query to retrieve the 'messages' collection and order it by the 'timestamp' field
@@ -91,9 +85,16 @@ export default function ChatBox() {
 
   return (
     <div className={`chat ${expanded ? 'expanded' : ''}`}>
-      <div className="chat-button" onClick={toggleExpanded}>
-        <span>CHAT</span>
-      </div>
+      <button className="chat-button primary" onClick={toggleExpanded}>
+        { expanded ? 
+          <>
+            <FontAwesomeIcon icon={faClose} />
+            <span className="ml-2">Close chat</span>
+          </>
+          :
+          <FontAwesomeIcon icon={faComments} />
+        }
+      </button>
 
       <div className='chat-container' ref={chatContainerRef}>
         <div className='messages-container'>

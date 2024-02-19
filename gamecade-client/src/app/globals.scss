@@ -29,7 +29,7 @@ button {
   max-width: 20rem;
 
   transition: all 0.16s ease-in-out;
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 1.2rem;
 
   color: #000000;
   background: #fff;
@@ -54,12 +54,15 @@ button {
     &:hover, &:focus {
       color: #786000;
       background: #fbf321;
-      border-color: #786000;
+      border-color: #392e00;
+
+      box-shadow: inset 0 -1px 2px 1px rgba(93 74 0 / 0.6), 
+        0 0px 6px 1px rgba(245, 196, 0, 0.2);
     }
 
     &:active {
-      color: #a28f00;
-      background: #e4cb13;
+      color: #807101;
+      background: #d1bd25;
       box-shadow: inset 0 1px 2px 1px rgb(93 74 0 / 0.6);
     }
   }
@@ -72,14 +75,16 @@ button {
     box-shadow: inset 0 -1px 2px 1px rgb(95 0 86 / 0.6);
 
     &:hover, &:focus {
-      color: #810074;
-      background: #ff3ceb;
-      border-color: #810074;
+      color: #69015e;
+      background: #e153d2;
+      border-color: #43003d;
+      box-shadow: inset 0 -1px 2px 1px rgb(95 0 86 / 0.6),
+        0 0px 6px 1px rgba(215, 5, 252, 0.3);
     }
 
     &:active {
       color: #76156c;
-      background: #bd01aa;
+      background: #a53d9b;
       box-shadow: inset 0 1px 2px 1px rgb(95 0 86  / 0.6);
     }
   }

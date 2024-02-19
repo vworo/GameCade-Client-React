@@ -14,7 +14,7 @@ export default function SignInGuest() {
                 log.error('No anonymous user created - please try again');
             } else {
                 console.log("Guest login successful!", { user: result.user });
-                router.push("/lobby");
+                router.push("/dashboard");
             }
         } catch (error) {
             console.error('Error signing in', error);
