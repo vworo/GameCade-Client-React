@@ -111,7 +111,7 @@ export default function ChatBox() {
 
               <form onSubmit={sendMessage} className='messages-form'>
                   <input value={input} onChange={handleInputChange} placeholder='Type a message' />
-                  <button type='submit'>SEND</button>
+                  <button type='submit'>Send Message</button>
               </form>
           </div>
         }
