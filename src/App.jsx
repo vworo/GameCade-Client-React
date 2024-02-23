@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 // import Game from './pages/Game';
 // import SignOut from './components/SignOut';
 // import RedirectToLobby from './components/RedirectToLobby';
-import './App.css'
+// import './App.css'
 
 function App() {
     return (
