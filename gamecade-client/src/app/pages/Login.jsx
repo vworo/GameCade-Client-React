@@ -1,5 +1,4 @@
 import SignInGoogle from '../components/login/SignInGoogle';
-import SignInAnon from '../components/login/SignInAnon';
 import './Login.css';
 
 export default function Login() {
@@ -8,7 +7,6 @@ export default function Login() {
             <div className="landingContent">
                 <h1>GAMECADE</h1>
                 <SignInGoogle />
-                {/* <SignInAnon /> */}
             </div>
         </div>
     );
