@@ -18,6 +18,6 @@ export default function SignOut() {
     };
 
     return (
-        auth.currentUser && <button onClick={_handleSignOut}>SIGN OUT</button>
+        <button className='primary' onClick={_handleSignOut}>Sign Out</button>
     );
 };
