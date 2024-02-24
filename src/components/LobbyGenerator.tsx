@@ -3,12 +3,13 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { doc, getDoc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
-import { auth, db } from '../../firebase.js';
+import { auth, db } from '@/firebase.js';
 
-import ChatBox from '../../components/ChatBox.jsx';
-import './Lobby.css';
+type Props = {
+    onCodeGenerated: Function
+}
 
-export default function Lobby() {
+export default function LobbyGenerator({ onCodeGenerated }: Props) {
     const router = useRouter();
     const [joinCode, setJoinCode] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -32,8 +33,7 @@ export default function Lobby() {
                     timestamp: new Date()
                 });
 
-                // Redirect to the lobby page with the generated lobby code, passing data to next route
-                router.push(`/lobby/${lobbyCode}`, { state: { displayName, userId } });
+                onCodeGenerated(lobbyCode);
             } catch (error) {
                 console.error('Error creating lobby', error);
             }
@@ -87,22 +87,18 @@ export default function Lobby() {
     };
 
     return (
-        <div>
-            <div className='lobby-content'>
-                <h1>GAMECADE LOBBY</h1>
-                <div className='create-lobby-button'>
-                    <button onClick={_handleCreateLobby}>CREATE LOBBY</button>
-                </div>
-                <h2>OR</h2>
-                <form onSubmit={_handleJoinLobby}>
-                    <input onChange={e => setJoinCode(e.target.value)} />
-                    <div className="button-container">
-                        <button type="submit">JOIN LOBBY</button>
-                    </div>
-                    {errorMessage && <p>{errorMessage}</p>}
-                </form>
+        <div className='lobby-content'>
+            <div className='create-lobby-button'>
+                <button onClick={_handleCreateLobby}>CREATE LOBBY</button>
             </div>
-            <ChatBox />
+            <h2>OR</h2>
+            <form onSubmit={_handleJoinLobby}>
+                <input onChange={e => setJoinCode(e.target.value)} />
+                <div className="button-container">
+                    <button type="submit">JOIN LOBBY</button>
+                </div>
+                {errorMessage && <p>{errorMessage}</p>}
+            </form>
         </div>
     );
 };
