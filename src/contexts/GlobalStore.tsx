@@ -5,7 +5,7 @@ import { createContext, useContext, useState } from 'react';
 import ChatBox from '@/components/ChatBox';
 import Sidebar from '@/components/sidebar/Sidebar';
 
-const EMPTY_USER = {
+export const EMPTY_USER = {
   id: undefined,
   displayName: 'Not logged in',
 }

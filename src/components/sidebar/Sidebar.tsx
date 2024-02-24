@@ -1,13 +1,22 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import Link from 'next/link'
 
 import SignOut from "@/components/SignOut"
-import { useGlobalContext } from '@/contexts/GlobalStore';
+import { useGlobalContext, EMPTY_USER } from '@/contexts/GlobalStore';
 
 
 export default function Sidebar({}) {
+    const router = useRouter();
     const globalStore = useGlobalContext();
+
+    const handleSignOut = () => {
+        globalStore?.setUser(EMPTY_USER);
+
+        // * Push custom route
+        router.push("/");
+    }
 
     return (
         <aside className="h-screen w-1/4">
@@ -29,7 +38,7 @@ export default function Sidebar({}) {
                     { globalStore.user && 
                         <span className="text-blue-400">{ globalStore.user.displayName }</span>
                     }
-                    <SignOut />
+                    <SignOut onSignOutComplete={handleSignOut}/>
                 </div>
             </nav>  
         </aside>
