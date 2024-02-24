@@ -6,7 +6,7 @@ import mockGamePhoto from "@/assets/MOCK_GAME_1_HERO_IMAGE.jpg";
 
 import './Game.css'
 
-function Game() {
+export default function Games() {
     return (
         <div className='GamePage flex flex-1 flex-col md:flex-row'>
             <div className="GamePageHeroImageContainer h-96 md:h-svh relative
@@ -45,5 +45,3 @@ function Game() {
         </div>
     )
 };
-
-export default Game

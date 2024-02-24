@@ -3,7 +3,7 @@
 import { useRef, useEffect, useState } from 'react';
 
 import { doc, onSnapshot, getDoc, setDoc, updateDoc } from 'firebase/firestore';
-import { db, storage } from '../../firebase.js';
+import { db, storage } from '@/firebase.js';
 import { ref, uploadString, getDownloadURL, listAll, uploadBytes } from 'firebase/storage';
 
 import Paintbar from './Paintbar';

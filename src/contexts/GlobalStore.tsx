@@ -20,7 +20,7 @@ export function GlobalStore({ children }) {
         setUser: (user) => {
           // * Conditional logic
           let userToSet = {
-            uid: user.uid,
+            id: user.uid,
             displayName: user.isAnonymous ? 'Guest' : user.displayName,
           };
 

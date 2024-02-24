@@ -1,6 +1,8 @@
-import SignOut from "@/components/SignOut"
+import Link from 'next/link'
 
+import SignOut from "@/components/SignOut"
 import { useGlobalContext } from '@/contexts/GlobalStore';
+
 
 export default function Sidebar({}) {
     const globalStore = useGlobalContext();
@@ -13,6 +15,12 @@ export default function Sidebar({}) {
                     <button className="primary">
                         Play Games
                     </button>
+
+                    <Link href="/games/QuickDraw">
+                        <button className="secondary">
+                            (TEST) QuickDraw)
+                        </button>
+                    </Link>
                 </div>
 
                 <div className="flex justify-center border border-red-500">

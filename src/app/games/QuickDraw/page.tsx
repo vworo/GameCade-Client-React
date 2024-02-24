@@ -8,14 +8,11 @@ import LobbyGenerator from '@/components/LobbyGenerator';
 import { useGlobalContext } from '@/contexts/GlobalStore';
 
 export default function QuickDraw() {
-    const [lobbyCode, setLobbyCode] = useState();
-
     const globalState = useGlobalContext();
-
-    console.log("globalState", globalState);
+    const [lobbyCode, setLobbyCode] = useState();
 
     return (<>
         <LobbyGenerator onCodeGenerated={setLobbyCode} />
-        { lobbyCode && <Draw lobbyCode={lobbyCode} userId={123} displayName={'Test'} /> }
+        { lobbyCode && <Draw lobbyCode={lobbyCode} userId={globalState.user.id} displayName={globalState.user.displayName} /> }
     </>);
 }
