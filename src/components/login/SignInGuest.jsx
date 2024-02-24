@@ -1,11 +1,7 @@
 import { signInAnonymously } from 'firebase/auth';
-import { useRouter } from 'next/navigation';
+import { auth } from '@/firebase';
 
-import { auth } from '../../firebase';
-
-export default function SignInGuest() {
-    const router = useRouter();
-
+export default function SignInGuest({ onSignInSuccess }) {
     const _signInGuest = async () => {
         try {
             const result = await signInAnonymously(auth);
@@ -13,8 +9,7 @@ export default function SignInGuest() {
             if (!result.user) {
                 log.error('No anonymous user created - please try again');
             } else {
-                console.log("Guest login successful!", { user: result.user });
-                router.push("/dashboard");
+                onSignInSuccess({ user: result.user });
             }
         } catch (error) {
             console.error('Error signing in', error);

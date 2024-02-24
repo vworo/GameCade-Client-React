@@ -3,13 +3,14 @@ import { useRouter } from 'next/navigation';
 import { auth } from '../../firebase.js';
 import '../login/SignInGoogle.css'
 
-export default function SignInGoogle() {
+export default function SignInGoogle({ onSignInSuccess }) {
     const provider = new GoogleAuthProvider();
     const router = useRouter();
 
     const _signInWithGoogle = async () => {
         try {
-            await signInWithPopup(auth, provider);
+            const result = await signInWithPopup(auth, provider);
+            onSignInSuccess({ user: result.user });
             router.push('/dashboard');
         } catch (error) {
             console.error('Error signing in', error);

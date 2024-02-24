@@ -1,6 +1,10 @@
-import SignOut from "../SignOut"
+import SignOut from "@/components/SignOut"
+
+import { useGlobalContext } from '@/contexts/GlobalStore';
 
 export default function Sidebar({}) {
+    const globalStore = useGlobalContext();
+
     return (
         <aside className="h-screen">
             <nav className="h-full flex flex-col bg-white w-1/5 p-4 fixed border border-yellow-500 justify-between">
@@ -12,6 +16,9 @@ export default function Sidebar({}) {
                 </div>
 
                 <div className="flex justify-center border border-red-500">
+                    { globalStore.user && 
+                        <span className="text-blue-400">{ globalStore.user.displayName }</span>
+                    }
                     <SignOut />
                 </div>
             </nav>  

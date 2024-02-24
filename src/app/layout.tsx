@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.scss";
 import './Layout.css'
 
+import { GlobalStore } from '@/contexts/GlobalStore'
 import RedirectToLobby from '../components/RedirectToLobby';
 
 const inter = Inter({ subsets: ["latin"] });
@@ -21,7 +22,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`min-h-svh flex flex-col ${inter.className}`}>
         <RedirectToLobby />
-        { children }
+        
+        <GlobalStore>
+          { children }
+        </GlobalStore>
       </body>
     </html>
   );

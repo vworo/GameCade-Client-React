@@ -1,9 +1,31 @@
 'use client'
 
-import SignInGoogle from '../components/login/SignInGoogle';
-import SignInGuest from '../components/login/SignInGuest';
+import { useRouter } from 'next/navigation';
+
+import { useGlobalContext } from '@/contexts/GlobalStore';
+
+import SignInGoogle from '@/components/login/SignInGoogle';
+import SignInGuest from '@/components/login/SignInGuest';
+
+type SetLoggedInUserParams = {
+    user: {
+        id: number;
+        firstName: string;
+        lastName: string;
+    },
+}
 
 export default function Login() {
+    const router = useRouter();
+    const globalStore = useGlobalContext();
+
+    const setLoggedInUser = ({ user }: SetLoggedInUserParams) => {
+        globalStore?.setUser(user);
+
+        // * Push custom route
+        router.push("/dashboard");
+    }
+
     return (
         <div className="flex flex-1 flex-col align-center justify-center text-center items-center h-full">
             <h1 className="text-9xl italic font-bold mb-4">GAMECADE</h1>
@@ -15,8 +37,8 @@ export default function Login() {
                 Ready to play, earn, and thrive? Join Gamecade now!</p>
 
             <div className="flex flex-row">
-                <SignInGoogle />
-                <SignInGuest />
+                <SignInGoogle onSignInSuccess={setLoggedInUser} />
+                <SignInGuest onSignInSuccess={setLoggedInUser} />
             </div>
         </div>
     );
