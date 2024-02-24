@@ -2,8 +2,11 @@
 
 import { createContext, useContext, useState } from 'react';
 
+import ChatBox from '@/components/ChatBox';
+import Sidebar from '@/components/sidebar/Sidebar';
+
 const EMPTY_USER = {
-  id: 0,
+  id: undefined,
   displayName: 'Not logged in',
 }
 
@@ -32,7 +35,13 @@ export function GlobalStore({ children }) {
 
   return (
     <GlobalContext.Provider value={ globalState }>
-      {children}
+      <div className="page flex flex-row min-h-svh">
+        { user.id && <Sidebar /> }
+        <div className={'pageContent flex flex-wrap flex-1 w-full ' + (user.id && 'sidebarAvailable') }>
+          { children }
+        </div>
+        { user.id && <ChatBox /> }
+      </div>
     </GlobalContext.Provider>
   );
 }

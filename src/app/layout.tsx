@@ -3,8 +3,9 @@ import { Inter } from "next/font/google";
 import "./globals.scss";
 import './Layout.css'
 
-import { GlobalStore } from '@/contexts/GlobalStore'
-import RedirectToLobby from '../components/RedirectToLobby';
+import RedirectToLobby from '@/components/RedirectToLobby';
+
+import { GlobalStore } from '@/contexts/GlobalStore';
 
 const inter = Inter({ subsets: ["latin"] });
 

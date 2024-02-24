@@ -15,7 +15,7 @@ type SetLoggedInUserParams = {
     },
 }
 
-export default function Login() {
+export default function Login({ children }) {
     const router = useRouter();
     const globalStore = useGlobalContext();
 
