@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import { doc, getDoc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { auth, db } from '@/firebase.js';
 
+import type { FormEventHandler } from 'react';
+
 type Props = {
     onCodeGenerated: Function
 }
@@ -40,7 +42,7 @@ export default function LobbyGenerator({ onCodeGenerated }: Props) {
         }
     };
 
-    const _handleJoinLobby = async (e) => {
+    const _handleJoinLobby: FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault();
 
         const currentUser = auth.currentUser;
@@ -60,7 +62,7 @@ export default function LobbyGenerator({ onCodeGenerated }: Props) {
                     });
 
                     // Redirect to the lobby page with the join code, passing data to next route
-                    router.push(`/lobby/${joinCode}`, { state: { displayName, userId } });
+                    // router.push(`/lobby/${joinCode}`, { state: { displayName, userId } });
                 } else {
                     // If lobby does not exist
                     console.log('Invalid lobby code');
