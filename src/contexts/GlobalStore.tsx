@@ -5,24 +5,38 @@ import { createContext, useContext, useState } from 'react';
 import ChatBox from '@/components/ChatBox';
 import Sidebar from '@/components/sidebar/Sidebar';
 
-export const EMPTY_USER = {
+
+type User = {
+  id?: number;
+  displayName?: string;
+}
+
+type InputUser = {
+  uid?: number;
+  isAnonymous?: boolean;
+  displayName?: string;
+}
+
+export const EMPTY_USER: User = {
   id: undefined,
   displayName: 'Not logged in',
 }
 
 const GlobalContext = createContext({
   user: EMPTY_USER,
-  setUser: () => {}
+  setUser: (user: InputUser) => {}
 });
 
-export function GlobalStore({ children }) {
+export function GlobalStore({ children }: Readonly<{
+  children: React.ReactNode;
+}>) {
     const [user, setUser] = useState(EMPTY_USER)
     
     const globalState = {
         user,
-        setUser: (user) => {
+        setUser: (user: InputUser) => {
           // * Conditional logic
-          let userToSet = {
+          let userToSet: User = {
             id: user.uid,
             displayName: user.isAnonymous ? 'Guest' : user.displayName,
           };

@@ -7,15 +7,16 @@ import { useGlobalContext } from '@/contexts/GlobalStore';
 import SignInGoogle from '@/components/login/SignInGoogle';
 import SignInGuest from '@/components/login/SignInGuest';
 
-type SetLoggedInUserParams = {
-    user: {
-        id: number;
-        firstName: string;
-        lastName: string;
-    },
+type User = {
+    uid: number;
+    displayName: string;
 }
 
-export default function Login({ children }) {
+type SetLoggedInUserParams = {
+    user: User,
+}
+
+export default function Login() {
     const router = useRouter();
     const globalStore = useGlobalContext();
 
