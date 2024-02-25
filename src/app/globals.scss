@@ -96,7 +96,20 @@ button {
 
 // * Page
 
-.pageContent.sidebarAvailable {
-  padding: 1.5rem;
-  padding-top: 3rem;
+.pageHeader.game {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  border-bottom: 1px solid #76156c;
+  background: rgba(#da3fcb, 0.1);
+
+  & h1 {
+    text-transform: uppercase;
+    font-style: italic;
+    font-weight: bold;
+    cursor: default;
+  }
 }

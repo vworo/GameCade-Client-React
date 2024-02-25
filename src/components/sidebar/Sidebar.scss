@@ -1,0 +1,11 @@
+.gc-sidebar {
+    transition: all 0.34s ease-in-out;
+
+    background: #221f2f;
+    border-right: 1px solid #000623;
+    box-shadow: 0px 0px 15px 0px #161622;
+
+    &:hover {
+        background: #262333;
+    }
+}

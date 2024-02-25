@@ -6,6 +6,7 @@ import Link from 'next/link'
 import SignOut from "@/components/SignOut"
 import { useGlobalContext, EMPTY_USER } from '@/contexts/GlobalStore';
 
+import './Sidebar.scss';
 
 export default function Sidebar({}) {
     const router = useRouter();
@@ -19,8 +20,8 @@ export default function Sidebar({}) {
     }
 
     return (
-        <aside className="h-screen w-1/4">
-            <nav className="h-full flex flex-col bg-white w-full p-4 border border-yellow-500 justify-between">
+        <aside className="h-svh w-1/4 gc-sidebar flex flex-col p-4 justify-between">
+            <nav className="">
                 <div className="flex-col flex justify-center items-center border border-blue-500">
                     <h1 className="text-black italic font-bold text-4xl mb-7">GAMECADE</h1>
                     <button className="primary">

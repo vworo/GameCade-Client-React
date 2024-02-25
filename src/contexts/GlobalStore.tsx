@@ -51,7 +51,7 @@ export function GlobalStore({ children }: Readonly<{
     <GlobalContext.Provider value={ globalState }>
       <div className="page flex flex-row min-h-svh">
         { user.id && <Sidebar /> }
-        <div className={'pageContent flex flex-wrap flex-1 w-full ' + (user.id && 'sidebarAvailable') }>
+        <div className={'pageContent flex flex-col flex-wrap flex-1 w-full ' + (user.id && 'sidebarAvailable') }>
           { children }
         </div>
         { user.id && <ChatBox /> }
