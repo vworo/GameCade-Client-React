@@ -8,4 +8,8 @@
     &:hover {
         background: #262333;
     }
+
+    &:hover .gc-logo {
+        text-shadow: var(--color-pink) 1px 1px 5px, var(--color-yellow) -1px -1px 5px, var(--color-blue) 0px 0px 8px, var(--color-pink) 0px 0px 8px;
+    }
 }

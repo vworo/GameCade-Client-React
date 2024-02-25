@@ -7,6 +7,8 @@ import { useGlobalContext } from '@/contexts/GlobalStore';
 import SignInGoogle from '@/components/login/SignInGoogle';
 import SignInGuest from '@/components/login/SignInGuest';
 
+import './Login.scss';
+
 type User = {
     uid: number;
     displayName: string;
@@ -29,7 +31,7 @@ export default function Login() {
 
     return (
         <div className="flex flex-1 flex-col align-center justify-center text-center items-center h-full">
-            <h1 className="text-9xl italic font-bold mb-4">GAMECADE</h1>
+            <h1 className="gc-logo text-9xl italic font-bold mb-4">GAMECADE</h1>
             <p className="mb-2">🎮 <strong>Welcome to Gamecade:</strong> Play, earn credits, and unlock a world of rewards. <br />
                 Our online arcade offers thrilling games crafted by talented developers.
             </p>
