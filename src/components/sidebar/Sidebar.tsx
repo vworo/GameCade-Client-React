@@ -21,21 +21,21 @@ export default function Sidebar({}) {
 
     return (
         <aside className="h-svh w-1/4 gc-sidebar flex flex-col p-4 justify-between">
-            <nav className="flex-col flex justify-center items-center border border-blue-500">
-                <h1 className="gc-logo text-white italic font-bold text-4xl mb-7">GAMECADE</h1>
+            <nav className="flex-col flex justify-center items-center">
+                <h1 className="gc-logo text-white italic font-bold text-4xl mb-12">GAMECADE</h1>
 
-                <button className="primary w-full mb-1">
+                <button className="primary w-full mb-4">
                     Play Games
                 </button>
 
-                <Link href="/games/QuickDraw" className="w-full mb-1">
+                <Link href="/games/QuickDraw" className="w-full mb-4">
                     <button className="secondary w-full">
                         (TEST) QuickDraw)
                     </button>
                 </Link>
             </nav>
 
-            <div className="flex justify-center border border-red-500">
+            <div className="flex justify-center">
                 { globalStore.user && 
                     <span className="text-blue-400">{ globalStore.user.displayName }</span>
                 }
